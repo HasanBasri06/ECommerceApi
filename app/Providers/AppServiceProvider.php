@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repository\CategoryRepository;
+use App\Repository\ICategoryRepository;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->bind(ICategoryRepository::class, CategoryRepository::class);
     }
 }
