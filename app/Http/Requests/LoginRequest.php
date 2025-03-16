@@ -26,17 +26,18 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email:dns',
+            'email' => 'required',
             'password' => 'required'
         ];
     }
 
     public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
-        return new HttpResponseException($this->response(
+        throw new HttpResponseException($this->response(
             ResponseEnum::ERROR->value,
             [],
             422,
+            "Validatasyon hatası",
             $validator->errors()
         ));
     }
